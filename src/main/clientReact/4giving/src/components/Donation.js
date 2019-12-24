@@ -7,7 +7,7 @@ class Donation extends Component {
         Donations: []
      }
 
-     //sunc . you send a request then you wait for the response..
+     //sync . you send a request then you wait for the response..
      //async. you send a request then you don't have to wait...
 
      async componentDidMount(){
