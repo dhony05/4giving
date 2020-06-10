@@ -143,6 +143,7 @@ public class DonationService {
 			d.setCity(donation.getCity());
 			d.setZipcode(donation.getZipCode());
 	
+			
 			//d.setPrice(donation.getPrice());
 			d.setDescription(donation.getDescription());
 
