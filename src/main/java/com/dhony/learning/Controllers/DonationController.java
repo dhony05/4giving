@@ -54,7 +54,7 @@ public class DonationController {
 
 	@GetMapping("/donations/{id}")
 	public ResponseEntity<DonationDTO> get(@PathVariable String id) {
-		DonationDTO donation = donationService.findOne(id);
+		DonationDTO donation = donationService.findById(id);
 		return ResponseEntity.ok(donation);
 	}
 	

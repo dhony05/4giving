@@ -22,7 +22,7 @@ import com.dhony.learning.models.Photo;
 
 
 @Service
-public class DonationService {
+public class DonationService implements DonationServiceInterface{
 	
 	
 	@Autowired
@@ -45,7 +45,7 @@ public class DonationService {
         return photoRepo.findById(id).get(); 
     }
     
-    
+    @Override
     public List<DonationDTO> findAll(Boolean availables) {
 		List<Donation> donationList = new ArrayList<>();
 		
@@ -65,7 +65,7 @@ public class DonationService {
 		System.out.println(donationList);
 		return donationList.stream().map(d -> donationMapper.toDto(d)).collect(Collectors.toList());
 	}
-    
+    @Override
     public List<DonationDTO> findAllByEmail(String email){
     	
     	List<Donation> donationByEmail = new ArrayList<>();
@@ -74,7 +74,7 @@ public class DonationService {
     	}
     	return donationByEmail.stream().map(d -> donationMapper.toDto(d)).collect(Collectors.toList());
     }
-    
+    @Override
     public List<DonationDTO> findAllByState(String state){
     	List<Donation> donationByStates = new ArrayList<>();
     	
@@ -84,6 +84,7 @@ public class DonationService {
 		return donationByStates.stream().map(d -> donationMapper.toDto(d)).collect(Collectors.toList());
 		
 	}
+    @Override
     public List<DonationDTO> findAllByCity(String state, String city){
     	List<Donation> donationByCity = new ArrayList<>();
     	
@@ -99,6 +100,7 @@ public class DonationService {
 		
 	}
     
+    @Override
     public List<DonationDTO> findAllByZipCode(int zipCode){
     	List<Donation> donationByZipCode = new ArrayList<>();
     	
@@ -109,7 +111,8 @@ public class DonationService {
 		
 	}
     
-    public DonationDTO findOne(String id) {
+    @Override
+    public DonationDTO findById(String id) {
 		Optional<Donation> donationOp = donationRepo.findById(id);
 		if (donationOp.isPresent()) {
 			return donationMapper.toDto(donationOp.get());
@@ -117,6 +120,7 @@ public class DonationService {
 		return null;
 	}
     
+    @Override
 	public DonationDTO save(DonationDTO donation) {
 		Donation entity = donationMapper.toEntity(donation);
 		
@@ -127,6 +131,7 @@ public class DonationService {
 		return donationMapper.toDto(saved);
 	}
 	
+	@Override
 	public DonationDTO update(DonationDTO donation, String id) {
 		Optional<Donation> findById = donationRepo.findById(id);
 		if (findById.isPresent()) {
@@ -155,7 +160,8 @@ public class DonationService {
 		}
 	}
 	
-	public void delete(String id) {
+	@Override
+	public void deleteById(String id) {
 		donationRepo.deleteById(id);
 	}
 
