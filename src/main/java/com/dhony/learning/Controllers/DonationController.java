@@ -84,7 +84,7 @@ public class DonationController {
 
 	@DeleteMapping("/donations/{id}")
 	public ResponseEntity<Void> delete(@PathVariable String id) {
-		donationService.delete(id);
+		donationService.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
 
